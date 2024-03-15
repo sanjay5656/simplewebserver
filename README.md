@@ -21,17 +21,17 @@ Serving the HTML pages.
 Testing the webserver.
 
 ## PROGRAM:
-```program
+```python
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # HTML content with a list of the top 5 revenue-generating companies
-content = """
+content = '''
 <!DOCTYPE html>
 <html>
 <head>
     <title>Top 5 Revenue-Generating Companies</title>
 </head>
-<body style="background-color:powderblue;">
+<body style="background-color:LightCyan;">
     <center>
         <h1>Top 5 Revenue-Generating Companies</h1>
     </center>
@@ -61,24 +61,25 @@ content = """
     </center>
 </body>
 </html>
-"""
+'''
 
-class MyHandler(BaseHTTPRequestHandler):
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Request received")
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html; charset=utf-8')
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
         self.end_headers()
         self.wfile.write(content.encode())
 
-server_address = ('',80)
-httpd = HTTPServer(server_address, MyHandler)
-print("My webserver is running...")
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
 ```
 
 ## OUTPUT:
-![Screenshot 2024-03-14 140442](https://github.com/sanjay5656/simplewebserver/assets/115128955/17556a5c-bf42-463f-8ecd-8ee934e69164)
+![alt text](img1.png)
 
+![alt text](img2.png)
 ## RESULT:
 The program for implementing simple webserver is executed successfully.
